@@ -10,7 +10,7 @@ from aiogram.fsm.state import State, StatesGroup
 # Настройка логирования
 logging.basicConfig(level=logging.INFO)
 
-BOT_TOKEN = "ВАШ_ТЕЛЕГРАМ_ТОКЕН"
+BOT_TOKEN = 8951982282:AAGzsmjmEI2tq5MV63EIsE9W0Kap-ipL_2E
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
