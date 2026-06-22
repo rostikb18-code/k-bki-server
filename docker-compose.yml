@@ -1,0 +1,7 @@
+services:
+  bot:
+    build: .
+    container_name: people-search-bot
+    restart: unless-stopped
+    environment:
+      BOT_TOKEN: 8951982282:AAGzsmjmEI2tq5MV63EIsE9W0Kap-ipL_2E
