@@ -12,10 +12,7 @@ from aiogram.fsm.state import State, StatesGroup
 logging.basicConfig(level=logging.INFO)
 
 BOT_TOKEN = os.getenv("BOT_TOKEN", "").strip()
-if not BOT_TOKEN:
-    raise RuntimeError(
-        "BOT_TOKEN не найден. Вставьте новый токен от BotFather в docker-compose.yml"
-    )
+if not BOT_TOKEN: 8951982282:AAGzsmjmEI2tq5MV63EIsE9W0Kap-ipL_2E
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
