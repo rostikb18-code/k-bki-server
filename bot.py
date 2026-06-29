@@ -1,4 +1,3 @@
-
 import os
 import logging
 import asyncio
@@ -12,7 +11,10 @@ from aiogram.fsm.state import State, StatesGroup
 logging.basicConfig(level=logging.INFO)
 
 BOT_TOKEN = os.getenv("BOT_TOKEN", "").strip()
-if not BOT_TOKEN: 8951982282:AAGzsmjmEI2tq5MV63EIsE9W0Kap-ipL_2E
+if not BOT_TOKEN:
+    raise RuntimeError(
+        "BOT_TOKEN не найден. Вставьте новый токен от BotFather в docker-compose.yml"
+    )
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
@@ -89,8 +91,7 @@ kb_restart = ReplyKeyboardMarkup(
 async def cmd_start(message: Message, state: FSMContext):
     await state.clear()
     await message.answer(
-        "Добро пожаловать в систему поиска по локальной базе.
-"
+        "Добро пожаловать в систему поиска по локальной базе.\n"
         "Заполните известные параметры. Если что-то не знаете — нажмите «Пропустить шаг».",
         reply_markup=kb_skip,
     )
@@ -218,21 +219,14 @@ async def process_country_and_search(message: Message, state: FSMContext):
         )
         return
 
-    response = "🔍 Результаты поиска:
-
-"
+    response = "🔍 Результаты поиска:\n\n"
     for row in results:
         response += (
-            f"👤 ФИО: {row[1]} {row[2]} {row[3]}
-"
-            f"📅 Дата рождения: {row[4]}.{row[5]}.{row[6]} ({row[7]} лет)
-"
-            f"📍 Место: {row[8]}, {row[9]}
-"
-            f"📞 Телефон: {row[10]}
-"
-            f"────────────────────
-"
+            f"👤 ФИО: {row[1]} {row[2]} {row[3]}\n"
+            f"📅 Дата рождения: {row[4]}.{row[5]}.{row[6]} ({row[7]} лет)\n"
+            f"📍 Место: {row[8]}, {row[9]}\n"
+            f"📞 Телефон: {row[10]}\n"
+            f"────────────────────\n"
         )
 
     await message.answer(response, reply_markup=kb_restart)
